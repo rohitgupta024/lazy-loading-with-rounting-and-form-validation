@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy } from "react";
+import { BrowserRouter, Switch } from "react-router-dom";
+import Layout from "./Layout";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+
+
+const Home = lazy(()=> import('./views/pages/Home'));
+const Services = lazy(()=> import("./views/pages/Service"));
+const About = lazy(()=> import('./views/pages/About'));
+const Contect = lazy(()=> import( './views/pages/Contect'));
+
+class Routes extends React.Component{
+    render(){
+        return(
+            <BrowserRouter>
+            <Switch>
+                <Layout exact path="/" component={Home} />
+                <Layout  path="/Services" component={Services} />
+                <Layout  path="/About" component={About} />
+                <Layout  path="/Contect" component={Contect} />
+            </Switch>
+            </BrowserRouter>
+        )
+    }
 }
-
-export default App;
+export default Routes;
